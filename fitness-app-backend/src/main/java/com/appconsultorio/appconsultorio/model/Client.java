@@ -25,6 +25,23 @@ public class Client {
     @Column(name = "phone")
     private Integer phone;
 
+    /*Fisical characteristics*/
+    @Column(name = "weight")
+    private Integer weight;
+
+    @Column(name = "height")
+    private Integer height;
+
+    @Column(name = "imc")
+    private Integer imc;
+    /*Fisical characteristics*/
+
+    @OneToOne(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private Workout workout;
+
+    @OneToOne(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private Diet diet;
+
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<Turn> turnSet;

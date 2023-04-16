@@ -31,9 +31,8 @@ public class Professional {
     Set<Turn> turnSet;
 
     //orphanRemoval= true especifica que la entidad hijo debe ser eliminada automáticamente por el propio ORM si ha
-    // dejado de ser referenciada por una entidad padre
+    //dejado de ser referenciada por una entidad padre
     @OneToOne(mappedBy = "professional", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-
     private Calendars calendars;
 
 }

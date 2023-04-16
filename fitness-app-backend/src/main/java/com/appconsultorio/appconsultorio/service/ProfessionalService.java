@@ -18,11 +18,11 @@ public class ProfessionalService implements IProfessionalService {
     ModelMapper mapper;
     IProfessionalRepository iProfessionalRepository;
     ICalendarRepository iCalendarRepository;
-
     @Override
     public List<Professional> findProfessionalWithMoreOf2Turns(LocalDateTime date){
         return iProfessionalRepository.findProfessionalWithMoreOf2Turns(date);
     }
+
 
     @Override
     public void createProfessional(ProfessionalDTO professionalDTO) {
