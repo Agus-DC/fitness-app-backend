@@ -1,5 +1,7 @@
 package com.appconsultorio.appconsultorio.model;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreType;
 import lombok.*;
 import javax.persistence.*;
 import java.util.Set;
@@ -19,11 +21,17 @@ public class Client {
     @Column(name = "surname")
     private String surname;
 
-    @Column(name = "adress")
-    private String address;
+    //@Column(name = "adress")
+    //private String address;
 
     @Column(name = "phone")
     private Integer phone;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "password")
+    private String password;
 
     /*Fisical characteristics*/
     @Column(name = "weight")
