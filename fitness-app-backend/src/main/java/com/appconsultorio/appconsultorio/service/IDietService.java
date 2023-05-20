@@ -1,17 +1,22 @@
 package com.appconsultorio.appconsultorio.service;
 
 import com.appconsultorio.appconsultorio.dtos.request.DietDTO;
+import com.appconsultorio.appconsultorio.model.Diet;
 import java.util.Date;
 import java.util.List;
 
 public interface IDietService {
-  Object addMeal(DietDTO dietDTO);
+  void addMeal(DietDTO dietDTO);
 
-  Object addMealList(List<DietDTO> dietDTOList);
+  void addMealList(List<DietDTO> dietDTOList);
 
-  Object updateMeal(DietDTO dietDTO);
+  void updateMeal(DietDTO dietDTO);
 
-  Object deleteMeal(String number, Date date);
+  void deleteMeal(Date date, long number);
 
-  Object deleteMealList(Date date);
+  void deleteMealList(Date date);
+
+  List<Diet> getDietListByDate(Date date);
+
+  Diet getDietById(Date date, long number);
 }

@@ -26,6 +26,9 @@ public class Diet {
   @Column(name = "id")
   private int id;
 
+  @Column
+  private long number;
+
   @Column(name = "date")
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
   private Date date;
