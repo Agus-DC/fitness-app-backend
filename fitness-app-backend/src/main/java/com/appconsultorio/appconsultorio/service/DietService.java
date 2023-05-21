@@ -17,34 +17,41 @@ public class DietService implements IDietService{
 
   IDietRepository iDietRepository;
 
+  @Override
   public void addMeal(DietDTO dietDTO) {
     Diet diet = mapper.map(dietDTO, Diet.class);
     iDietRepository.save(diet);
   }
 
+  @Override
   public void addMealList(List<DietDTO> dietDTOList) {
     dietDTOList.forEach(this::addMeal);
   }
 
+  @Override
   public void updateMeal(DietDTO dietDTO) {
     addMeal(dietDTO);
   }
 
+  @Override
   public void deleteMeal(Date date, long number) {
     Diet dietToDelete = iDietRepository.findDietById(date, number);
     iDietRepository.delete(dietToDelete);
   }
 
+  @Override
   public void deleteMealList(Date date) {
     List<Diet> dietListToDelete = iDietRepository.findDietListByDate(date);
     iDietRepository.deleteAll(dietListToDelete);
   }
 
-  public List<Diet> getDietListByDate(Date date) {
+  @Override
+  public List<Diet> getMealListByDate(Date date) {
     return iDietRepository.findDietListByDate(date);
   }
 
-  public Diet getDietById(Date date, long number) {
+  @Override
+  public Diet getMealById(Date date, long number) {
     return iDietRepository.findDietById(date, number);
   }
 }

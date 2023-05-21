@@ -1,32 +1,58 @@
 package com.appconsultorio.appconsultorio.service;
 
 import com.appconsultorio.appconsultorio.dtos.request.WorkoutDTO;
+import com.appconsultorio.appconsultorio.model.Workout;
+import com.appconsultorio.appconsultorio.repository.IWorkoutRepository;
 import java.util.Date;
 import java.util.List;
+import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
 
-public class WorkoutService {
-  public boolean addWorkout(WorkoutDTO workoutDTO) {
-    return true;
+@Service
+@AllArgsConstructor
+public class WorkoutService implements IWorkoutService{
+
+  ModelMapper mapper;
+
+  IWorkoutRepository iWorkoutRepository;
+
+  @Override
+  public void addWorkout(WorkoutDTO workoutDTO) {
+    Workout workout = mapper.map(workoutDTO, Workout.class);
+    iWorkoutRepository.save(workout);
   }
 
-  public boolean updateWorkout(WorkoutDTO workoutDTO) {
-    return true;
+  @Override
+  public void addWorkoutList(List<WorkoutDTO> workoutDTOList) {
+    workoutDTOList.forEach(this::addWorkout);
   }
 
-  public boolean deleteWorkout(String name) {
-    return true;
+  @Override
+  public void updateWorkout(WorkoutDTO workoutDTO) {
+    this.addWorkout(workoutDTO);
   }
 
-  public boolean deleteWorkout(Date date) {
-    return true;
+  @Override
+  public void deleteWorkout(String name, Date date) {
+    Workout workout = iWorkoutRepository.findByName(name, date);
+    iWorkoutRepository.delete(workout);
   }
 
-  public boolean addWorkoutList(List<WorkoutDTO> workoutDTOList) {
-    return true;
+  @Override
+  public void deleteWorkoutsByDate(Date date) {
+    List<Workout> workoutList = iWorkoutRepository.findWorkoutsByDate(date);
+    iWorkoutRepository.deleteAll(workoutList);
   }
 
+  @Override
+  public List<Workout> getWorkoutByDate(Date date) {
+    return iWorkoutRepository.findWorkoutsByDate(date);
+  }
 
-
-
+  @Override
+  public Workout getWorkoutByMuscularGroup(Date date, String muscularGroup) {
+    return iWorkoutRepository.findByName(muscularGroup, date);
+  }
 
 }

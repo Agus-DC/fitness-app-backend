@@ -1,17 +1,22 @@
 package com.appconsultorio.appconsultorio.service;
 
 import com.appconsultorio.appconsultorio.dtos.request.WorkoutDTO;
+import com.appconsultorio.appconsultorio.model.Workout;
 import java.util.Date;
 import java.util.List;
 
 public interface IWorkoutService {
-  Object addWorkout(WorkoutDTO workoutDTO);
+  void addWorkout(WorkoutDTO workoutDTO);
 
-  Object updateWorkout(WorkoutDTO workoutDTO);
+  void updateWorkout(WorkoutDTO workoutDTO);
 
-  Object deleteWorkout(String name);
+  void deleteWorkout(String name, Date date);
 
-  Object deleteWorkoutList(Date date);
+  void deleteWorkoutsByDate(Date date);
 
-  Object addWorkoutList(List<WorkoutDTO> workoutDTOList);
+  void addWorkoutList(List<WorkoutDTO> workoutDTOList);
+
+  List<Workout> getWorkoutByDate(Date date);
+
+  Workout getWorkoutByMuscularGroup(Date date, String muscularGroup);
 }

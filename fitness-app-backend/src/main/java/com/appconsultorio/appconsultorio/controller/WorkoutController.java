@@ -1,12 +1,14 @@
 package com.appconsultorio.appconsultorio.controller;
 
 import com.appconsultorio.appconsultorio.dtos.request.WorkoutDTO;
+import com.appconsultorio.appconsultorio.model.Workout;
 import com.appconsultorio.appconsultorio.service.IWorkoutService;
 import java.util.Date;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,27 +23,42 @@ public class WorkoutController {
   IWorkoutService workoutService;
 
   @PostMapping("/add")
-  public ResponseEntity addWorkout(@RequestBody WorkoutDTO workoutDTO) {
-    return new ResponseEntity<>(workoutService.addWorkout(workoutDTO), HttpStatus.OK);
+  public ResponseEntity<HttpStatus> addWorkout(@RequestBody WorkoutDTO workoutDTO) {
+    workoutService.addWorkout(workoutDTO);
+    return new ResponseEntity<>(HttpStatus.OK);
   }
 
   @PutMapping("/update")
-  public ResponseEntity updateWorkout(@RequestBody WorkoutDTO workoutDTO) {
-    return new ResponseEntity<>(workoutService.updateWorkout(workoutDTO), HttpStatus.OK);
+  public ResponseEntity<HttpStatus> updateWorkout(@RequestBody WorkoutDTO workoutDTO) {
+    workoutService.updateWorkout(workoutDTO);
+    return new ResponseEntity<>(HttpStatus.OK);
   }
 
   @PostMapping("/delete")
-  public ResponseEntity deleteWorkout(@RequestBody String name) {
-    return new ResponseEntity(workoutService.deleteWorkout(name), HttpStatus.OK);
+  public ResponseEntity<HttpStatus> deleteWorkout(@RequestBody String name, @RequestBody Date date) {
+    workoutService.deleteWorkout(name, date);
+    return new ResponseEntity(HttpStatus.OK);
   }
 
-  @PostMapping("/delete_list")
-  public ResponseEntity deleteWorkout(@RequestBody Date date) {
-    return new ResponseEntity(workoutService.deleteWorkoutList(date), HttpStatus.OK);
+  @PostMapping("/delete-list")
+  public ResponseEntity<HttpStatus> deleteWorkout(@RequestBody Date date) {
+    workoutService.deleteWorkoutsByDate(date);
+    return new ResponseEntity(HttpStatus.OK);
   }
 
-  @PostMapping("/add_list")
-  public ResponseEntity addWorkoutList(@RequestBody List<WorkoutDTO> workoutDTOList) {
-    return new ResponseEntity<>(workoutService.addWorkoutList(workoutDTOList), HttpStatus.OK);
+  @PostMapping("/add-list")
+  public ResponseEntity<HttpStatus> addWorkoutList(@RequestBody List<WorkoutDTO> workoutDTOList) {
+    workoutService.addWorkoutList(workoutDTOList);
+    return new ResponseEntity<>(HttpStatus.OK);
+  }
+
+  @GetMapping("/get-list")
+  public ResponseEntity<List<Workout>> getWorkoutList(@RequestBody Date date) {
+    return new ResponseEntity<>(workoutService.getWorkoutByDate(date), HttpStatus.OK);
+  }
+
+  @PostMapping("/get")
+  public ResponseEntity<Workout> getWorkout(@RequestBody Date date, @RequestBody String muscularGroup) {
+    return new ResponseEntity<>(workoutService.getWorkoutByMuscularGroup(date, muscularGroup), HttpStatus.OK);
   }
 }

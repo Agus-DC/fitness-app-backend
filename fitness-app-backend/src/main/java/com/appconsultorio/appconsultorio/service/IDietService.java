@@ -16,7 +16,7 @@ public interface IDietService {
 
   void deleteMealList(Date date);
 
-  List<Diet> getDietListByDate(Date date);
+  List<Diet> getMealListByDate(Date date);
 
-  Diet getDietById(Date date, long number);
+  Diet getMealById(Date date, long number);
 }
