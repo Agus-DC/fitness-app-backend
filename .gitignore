@@ -23,6 +23,7 @@
 *.rar
 # Default ignored files
 /shelf/
+/.idea/
 /.idea/workspace.xml
 # Editor-based HTTP Client requests
 /httpRequests/
@@ -30,4 +31,4 @@
 /dataSources/
 /dataSources.local.xml
 
-.idea
+
