@@ -2,7 +2,7 @@
 FROM adoptopenjdk:11-jdk-hotspot
 
 # Set the working directory in the container
-WORKDIR /opt/render/fitness-app-backend/
+WORKDIR /opt/render/fitness-app-backend/src/main/java/com/fitnessapp
 
 # Copy the pom.xml file to the container
 COPY pom.xml .
