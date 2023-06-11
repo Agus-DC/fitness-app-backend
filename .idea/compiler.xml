@@ -8,14 +8,17 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="fitness-app-backend" />
+        <module name="appconsultorio" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="appconsultorio" target="11" />
       <module name="fitness-app-backend" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="appconsultorio" options="-parameters" />
       <module name="fitness-app-backend" options="-parameters" />
     </option>
   </component>
