@@ -7,7 +7,6 @@ import com.appconsultorio.appconsultorio.repository.IProfessionalRepository;
 import com.appconsultorio.appconsultorio.repository.IClientRepository;
 import com.appconsultorio.appconsultorio.repository.ITurnRepository;
 import lombok.AllArgsConstructor;
-import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -31,7 +30,6 @@ public class TurnService implements ITurnService {
         Client client = iClientRepository.findById(turnDTO.getIdClient()).orElseThrow(() -> new RuntimeException("Paciente no encontrado"));
         Turn turn = new Turn();
         Set<Professional> professionals = new HashSet<>();//Collections.emptySet() -> Si pongo esto no puedo agregar optionals
-        Optional<Professional> professional = Optional.empty();
 
         turn.setDescription(turnDTO.getDescription());
         turn.setStatus(turnDTO.getStatus());
@@ -42,8 +40,14 @@ public class TurnService implements ITurnService {
         turn.setStartTime(turnDTO.getStartTime());
         turn.setClient(client);
 
+
         turnDTO.getIdProfessional().forEach(a ->
-                professionals.add(iProfessionalRepository.findById(a).get()));
+                professionals.add(iProfessionalRepository.findById(a).orElse(null)));
+
+        if (professionals.contains(null)) {
+            throw new RuntimeException("Profesional no encontrado");
+        }
+
 
         professionals.forEach(b -> b.getCalendars().createTurn(turn.getStartTime()));
 
