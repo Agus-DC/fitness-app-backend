@@ -3,12 +3,17 @@ package com.appconsultorio.appconsultorio.controller;
 import com.appconsultorio.appconsultorio.dtos.request.WorkoutDTO;
 import com.appconsultorio.appconsultorio.model.Workout;
 import com.appconsultorio.appconsultorio.service.IWorkoutService;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import lombok.AllArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -52,8 +57,8 @@ public class WorkoutController {
     return new ResponseEntity<>(HttpStatus.OK);
   }
 
-  @GetMapping("/get-list")
-  public ResponseEntity<List<Workout>> getWorkoutList(@RequestBody Date date) {
+  @GetMapping("/get-list/{date}")
+  public ResponseEntity<List<Workout>> getWorkoutList(@PathVariable("date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) throws ParseException {
     return new ResponseEntity<>(workoutService.getWorkoutByDate(date), HttpStatus.OK);
   }
 

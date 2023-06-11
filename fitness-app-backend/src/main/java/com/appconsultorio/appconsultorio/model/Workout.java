@@ -49,7 +49,7 @@ public class Workout {
   @Column(name = "others")
   private String others;
 
-  @JoinColumn(name = "workout_id")
+  @JoinColumn(name = "workout_id", nullable = false)
   @OneToOne(fetch = FetchType.LAZY)
   @JsonIgnore
   private Client client;

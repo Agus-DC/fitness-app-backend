@@ -42,7 +42,7 @@ public class Diet {
   @Column(name = "others")
   private String others;
 
-  @JoinColumn(name = "client_id")
+  @JoinColumn(name = "client_id", nullable = false)
   @OneToOne(fetch = FetchType.LAZY)
   @JsonIgnore
   private Client client;

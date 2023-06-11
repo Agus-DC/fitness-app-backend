@@ -37,7 +37,7 @@ public class Turn {
             name = "turns_professionals",
             joinColumns = @JoinColumn(name = "id_turn"),
             inverseJoinColumns = @JoinColumn(name = "id_professional")
-            
+
     )
     private Set<Professional> professionalset;
 
@@ -45,9 +45,9 @@ public class Turn {
     @ManyToOne
     @JoinColumn(name = "id_client", referencedColumnName = "id_client")
     private Client client;
-
+*//*
     @ManyToOne
-    @JoinColumn(name = "id_client", referencedColumnName = "id_client")
+    @JoinColumn(name = "id_professional", referencedColumnName = "id_professional")
     private Professional professional;
 */
 }
