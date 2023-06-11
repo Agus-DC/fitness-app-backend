@@ -1,6 +1,7 @@
 ### Java ###
 # Clases compiladas
 *.class
+/fitness-app-backend/target/classes/
 
 # Archivos de log
 *.log
