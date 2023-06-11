@@ -1,0 +1,1082 @@
+{
+	"info": {
+		"_postman_id": "705dd04c-4bc2-42f4-bdec-9ae67df7b95e",
+		"name": "0_APP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Professional",
+			"item": [
+				{
+					"name": "createProfessional",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\n {  \n    \"id\":           1,\n    \"name\" :        \"Agustin\",\n    \"surname\":      \"De Carlo\",\n    \"email\":        \"agustindecarlo@gmail.com\",\n    \"password\":     \"1234567890\",\n    \"id_calendar\" : 1\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/professional/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"professional",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllProfessionals",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\n {  \n    \"id\": 334,\n    \"name\" : \"AgustinL\",\n    \"surname\": \"De Carlo\"\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/professional/getall",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"professional",
+								"getall"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getProfessionalWith2Turns",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\n {  \n    \"date\": \"2020-06-06T12:00:00\"\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/dentist/findprofessionalwithmoreof2turns?date=2020-06-06 12:00",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"dentist",
+								"findprofessionalwithmoreof2turns"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2020-06-06 12:00"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editProfessional",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\n {  \n    \"id\": 334,\n    \"name\" : \"AgustinL\",\n    \"surname\": \"De Carlo\"\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/professional/edit",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"professional",
+								"edit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "removeProfessional",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\n {  \n    \"id\": 334,\n    \"name\" : \"AgustinL\",\n    \"surname\": \"De Carlo\"\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/professional/remove?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"professional",
+								"remove"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Client",
+			"item": [
+				{
+					"name": "createClient",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\n {  \n    \"id\": 334,\n    \"address\" : \"AvSiempreviva\",\n    \"name\": \"Lola\",\n    \"phone\": 1122556677,\n    \"surname\": \"Loles\",\n    \"email\": \"agustin@gmail.com\",\n    \"password\": \"1234567890\",\n    \"weight\": 50,\n    \"height\": 100,\n    \"imc\": 10\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/client/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"client",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllClients",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/client/getall",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"client",
+								"getall"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findClientbydateForProfessional",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/patient/findclientbydateforprofessionals?date=2020-06-06 12:00",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"patient",
+								"findclientbydateforprofessionals"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2020-06-06 12:00"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editClient",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\n {  \n    \"id\": 334,\n    \"address\" : \"AvSiempreviva\",\n    \"name\": \"Lola\",\n    \"phone\": 1122556677,\n    \"surname\": \"Loles\"\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/client/edit",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"client",
+								"edit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "removeClient",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/client/remove?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"client",
+								"remove"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Turn",
+			"item": [
+				{
+					"name": "createTurn",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\n {  \n    \"id_turn\": 1,\n    \"description\" : \"sacar muela\",\n    \"status\": \"Pendiente\",\n    \"start_time\": \"2020-06-06T12:00:00\",\n    \"id_patient\": 1,\n    \"id_dentist\" : [1]  \n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/turn/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"turn",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createReprogramedTurn",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\n {  \n    \"id_turn\": 1,\n    \"description\" : \"sacar muela\",\n    \"status\": \"Reprogramado\",\n    \"id_to_reprog_turn\" : 1,\n    \"start_time\": \"2020-06-06T12:10:00\",\n    \"id_patient\": 1,\n    \"id_dentist\" : [1]  \n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/turn/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"turn",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllTurn",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/turn/getall",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"turn",
+								"getall"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editTurn",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\n {  \n    \"id\": 334,\n    \"description\" : \"sacar muela\",\n    \"is_active\": true,\n    \"start_time\": \"\",\n    \"id_patient\": \"\"\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/turn/edit",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"turn",
+								"edit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "removeTurn",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/turn/remove?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"turn",
+								"remove"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findfinalizedturns",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/turn/findfinalizedturns",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"turn",
+								"findfinalizedturns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findreprogramedturns",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/turn/findreprogramedturns",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"turn",
+								"findreprogramedturns"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Calendar",
+			"item": [
+				{
+					"name": "createCalendar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\n {  \n    \"day\" : \"2020-06-06\",\n    \"turn1\" : true,\n    \"turn2\" : false,\n    \"turn3\" : false,\n    \"turn4\" : false,\n    \"turn5\" : false,\n    \"turn6\" : false,\n    \"turn7\" : false,\n    \"turn8\" : false,\n    \"turn9\" : false,\n    \"turn10\" : false,\n    \"turn11\" : false,\n    \"turn12\" : false,\n    \"turn13\" : false,\n    \"turn14\" : false,\n    \"turn15\" : false,\n    \"turn16\" : false\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/calendar/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"calendar",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllTurn",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/turn/getall",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"turn",
+								"getall"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCalendarFromProfessional",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/calendar/getcalendarfromprofessional?client_id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"calendar",
+								"getcalendarfromprofessional"
+							],
+							"query": [
+								{
+									"key": "client_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editTurn",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\n {  \n    \"id\": 334,\n    \"description\" : \"sacar muela\",\n    \"is_active\": true,\n    \"start_time\": \"\",\n    \"id_patient\": \"\"\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/turn/edit",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"turn",
+								"edit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "removeTurn",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/turn/remove?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"turn",
+								"remove"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Diet",
+			"item": [
+				{
+					"name": "addMeal",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {  \n    \"number\" : 1,\n    \"date\" : \"2020-06-06\",\n    \"type\" : \"desayuno\",\n    \"characteristics\" : \"220Kcal\",\n    \"others\" : \"bajo en grasa\"\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/diet/add-meal",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"diet",
+								"add-meal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addMealList",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " [\n     {  \n        \"number\" : 1,\n        \"date\" : \"2020-06-06\",\n        \"type\" : \"desayuno\",\n        \"characteristics\" : \"220Kcal\",\n        \"others\" : \"bajo en grasa\"\n    },\n    {  \n        \"number\" : 1,\n        \"date\" : \"2020-06-06\",\n        \"type\" : \"desayuno\",\n        \"characteristics\" : \"220Kcal\",\n        \"others\" : \"bajo en grasa\"\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/diet/add-meal-list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"diet",
+								"add-meal-list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateMeal",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/diet/update-meal",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"diet",
+								"update-meal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteMeal",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/diet/delete-meal",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"diet",
+								"delete-meal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteMealList",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/diet/delete-meal-list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"diet",
+								"delete-meal-list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getMeal",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/get-meal",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"get-meal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getMealList",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"date\" : \"2020-06-06\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/diet/get-meal-list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"diet",
+								"get-meal-list"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Workout",
+			"item": [
+				{
+					"name": "add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {  \n    \"name\" : \"desayuno\",\n    \"date\" : \"2020-06-06\",\n    \"muscular_group\" : \"espalda\",\n    \"reps\" : 10,\n    \"sets\" : 2,\n    \"pause\" : 10,\n    \"weight\" : 10,\n    \"others\" : \"algo\"\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/workout/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"workout",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addList",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " [\n     {  \n        \"name\" : \"desayuno\",\n        \"date\" : \"2020-06-06\",\n        \"muscular_group\" : \"espalda\",\n        \"reps\" : 10,\n        \"sets\" : 2,\n        \"pause\" : 10,\n        \"weight\" : 10,\n        \"others\" : \"algo\"\n    },\n    {  \n        \"name\" : \"desayuno\",\n        \"date\" : \"2020-06-06\",\n        \"muscular_group\" : \"espalda\",\n        \"reps\" : 10,\n        \"sets\" : 2,\n        \"pause\" : 10,\n        \"weight\" : 10,\n        \"others\" : \"algo\"\n    }\n ]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/workout/add-list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"workout",
+								"add-list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {  \n    \"name\" : \"desayuno\",\n    \"date\" : \"2020-06-06\",\n    \"muscular_group\" : \"espalda\",\n    \"reps\" : 10,\n    \"sets\" : 2,\n    \"pause\" : 10,\n    \"weight\" : 10,\n    \"others\" : \"algo\"\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/workout/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"workout",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/workout/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"workout",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteList",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/workout/delete-list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"workout",
+								"delete-list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getList",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/workout/get-list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"workout",
+								"get-list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/workout/get",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"workout",
+								"get"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
