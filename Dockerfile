@@ -8,10 +8,10 @@ WORKDIR /opt/render/fitness-app-backend/src/main/java/com/fitnessapp
 COPY pom.xml .
 
 # Copy the entire project to the container
-COPY target/fitness-app-backend.jar fitness-app-backend.jar
+COPY target/appconsultorio-0.0.1-SNAPSHOT.jar appconsultorio-0.0.1-SNAPSHOT.jar
 
 # Build the application with Maven
 RUN ./mvnw package -DskipTests
 
 # Set the command to run the application
-CMD ["java", "-jar", "target/fitness-app-backend.jar"]
+CMD ["java", "-jar", "target/appconsultorio-0.0.1-SNAPSHOT.jar"]
