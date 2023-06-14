@@ -1,15 +1,17 @@
-# Build stage
+# Utiliza la imagen base de Java
+FROM openjdk:11-jdk
 
-FROM maven:3.9.0-eclipse-temurin-17-alpine AS build
-COPY . .
-RUN mvn clean package -DskipTests
+# Copia el código fuente a la imagen
+COPY . /app
 
+# Establece el directorio de trabajo
+WORKDIR /app
 
-# Package stage
+# Compila la aplicación
+RUN ./gradlew build
 
-FROM adoptopenjdk:11-jdk-hotspot
-COPY --from=build /target/appconsultorio-0.0.1-SNAPSHOT.jar appconsultorio-0.0.1-SNAPSHOT.jar
-# ENV PORT=8080
+# Expone el puerto en el que se ejecuta tu aplicación
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","appconsultorio-0.0.1-SNAPSHOT.jar"]
 
+# Ejecuta la aplicación
+CMD ["./gradlew", "bootRun"]
