@@ -14,4 +14,4 @@ RUN ./gradlew build
 EXPOSE 8080
 
 # Ejecuta la aplicación
-CMD ["./gradlew", "bootRun"]
+CMD ["java", "-jar", "./build/libs/fitness-app-backend.jar"]
