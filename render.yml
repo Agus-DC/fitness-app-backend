@@ -1,0 +1,11 @@
+version: "1"
+services:
+  - name: fitness-app-backend
+    dockerfile: Dockerfile
+    env:
+      - key: SPRING_DATASOURCE_URL
+        value: jdbc:postgresql://zS3aWuO7ywYHrFHGtjfvathKZCdOCOmW@dpg-ci33js3hp8u1a1dppad0-a.oregon-postgres.render.com/mydatabase_yeib
+      - key: SPRING_DATASOURCE_USERNAME
+        value: myuser
+      - key: SPRING_DATASOURCE_PASSWORD
+        value: mypassword

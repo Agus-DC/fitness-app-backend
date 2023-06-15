@@ -1,17 +1,15 @@
-# Utiliza la imagen base de Java
-FROM openjdk:11-jdk
+# Build stage
 
-# Copia el código fuente a la imagen
-COPY . /app
+FROM maven:3.9.0-eclipse-temurin-17-alpine AS build
+COPY . .
+RUN mvn clean package -DskipTests
 
-# Establece el directorio de trabajo
-WORKDIR /app
 
-# Compila la aplicación
-RUN ./gradlew build
+# Package stage
 
-# Expone el puerto en el que se ejecuta tu aplicación
+FROM adoptopenjdk:11-jdk-hotspot
+COPY --from=build /target/appconsultorio-0.0.1-SNAPSHOT.jar appconsultorio-0.0.1-SNAPSHOT.jar
+# ENV PORT=8080
 EXPOSE 8080
+ENTRYPOINT ["java","-jar","appconsultorio-0.0.1-SNAPSHOT.jar"]
 
-# Ejecuta la aplicación
-CMD ["java", "-jar", "./build/libs/fitness-app-backend.jar"]
