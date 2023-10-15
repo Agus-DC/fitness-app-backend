@@ -10,5 +10,5 @@ public interface IProfessionalService {
     void updateProfessional(ProfessionalDTO professionalDTO);
     void removeProfessional(int id);
     List<Professional> getProfessional() ;
-    List<Professional> findProfessionalWithMoreOf2Turns(LocalDateTime date);
+    //List<Professional> findProfessionalWithMoreOf2Turns(LocalDateTime date);
 }

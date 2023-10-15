@@ -1,4 +1,7 @@
 package com.fitnessapp.model;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.sql.Timestamp;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,7 +11,7 @@ import java.util.Set;
 
 @Entity
 @Getter @Setter
-@Table(name = "Turns")
+@Table(name = "Turn")
 public class Turn {
 
     @Id
@@ -20,34 +23,17 @@ public class Turn {
     private String description;
 
     @Column(name = "start_time")
-    private LocalDateTime startTime;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    private Timestamp startTime;
 
     @Column(name = "status")
     private String status;
 
-    @Column(name = "id_to_reprog_turn")
-    private Integer idToReprogTurn;
-
-    @ManyToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_client", nullable = false)
     private Client client;
 
-    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "turns_professionals",
-            joinColumns = @JoinColumn(name = "id_turn"),
-            inverseJoinColumns = @JoinColumn(name = "id_professional")
-
-    )
-    private Set<Professional> professionalset;
-
-    /*
-    @ManyToOne
-    @JoinColumn(name = "id_client", referencedColumnName = "id_client")
-    private Client client;
-*//*
-    @ManyToOne
-    @JoinColumn(name = "id_professional", referencedColumnName = "id_professional")
-    private Professional professional;
-*/
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "calendar", nullable = false)
+    private Calendar calendar;
 }

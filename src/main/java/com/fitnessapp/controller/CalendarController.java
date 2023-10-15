@@ -1,7 +1,7 @@
 package com.fitnessapp.controller;
 
-import com.fitnessapp.dtos.request.CalendarsDTO;
-import com.fitnessapp.model.Calendars;
+import com.fitnessapp.dtos.request.CalendarDTO;
+import com.fitnessapp.model.Calendar;
 import com.fitnessapp.service.ICalendarService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,14 +19,14 @@ public class CalendarController {
     ICalendarService iCalendarService;
 
     @PostMapping("/create")
-    public String loadCalendar(@RequestBody CalendarsDTO calendarDTO){
+    public String loadCalendar(@RequestBody CalendarDTO calendarDTO){
         iCalendarService.createCalendar(calendarDTO);
         return "Calendario creado correctamente";
     }
 
     @PostMapping("/edit")
-    public String editProfessional(@RequestBody CalendarsDTO calendarsDTO){
-        iCalendarService.updateCalendar(calendarsDTO);
+    public String editProfessional(@RequestBody CalendarDTO calendarDTO){
+        iCalendarService.updateCalendar(calendarDTO);
         return "Professional editado correctamente";
     }
 
@@ -37,12 +37,12 @@ public class CalendarController {
     }
 
     @GetMapping("/getall")
-    public List<Calendars> getCalendar(){
+    public List<Calendar> getCalendar(){
         return iCalendarService.getCalendar();
     }
 
     @GetMapping("/getcalendarfromprofessional")
-    public ResponseEntity<Calendars> getCalendarFromProfessional(@RequestParam Integer professional_id){
+    public ResponseEntity<Calendar> getCalendarFromProfessional(@RequestParam Integer professional_id){
         return new ResponseEntity<>(iCalendarService.getCalendarFromProfessional(professional_id), HttpStatus.OK);
     }
 }

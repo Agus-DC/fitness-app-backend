@@ -35,25 +35,24 @@ public class TurnController {
     }
 
     @PostMapping("/create")
-    public String loadTurn(@RequestBody TurnDTO turnDTO) throws Exception {
-        iTurnService.createTurn(turnDTO);
-        return "Turno creado correctamente";
+    public ResponseEntity<String> loadTurn(@RequestBody TurnDTO turnDTO) throws Exception {
+        return ResponseEntity.ok("Turno " + iTurnService.createTurn(turnDTO) + " creado correctamente.");
     }
 
-    @PostMapping("/edit")
-    public String editTurn(@RequestBody Turn turn){
-        iTurnService.updateTurn(turn);
-        return "Turno editado correctamente";
+
+    @PutMapping("/edit")
+    public ResponseEntity<String> editTurn(@RequestBody TurnDTO turnDTO){
+        return ResponseEntity.ok("Turno editado correctamente, nuevo id: " + iTurnService.updateTurn(turnDTO));
     }
 
-    @PostMapping("/remove")
-    public String removeTurn(@RequestParam int id){
+    @DeleteMapping("/remove")
+    public ResponseEntity<String> removeTurn(@RequestParam int id){
         iTurnService.removeTurn(id);
-        return "Turno eliminado correctamente";
+        return ResponseEntity.ok("Turno " + id + "eliminado correctamente" );
     }
 
     @GetMapping("/getall")
-    public List<Turn> getTurns(){
-        return iTurnService.getTurn();
+    public ResponseEntity<List<Turn>> getTurns(){
+        return new ResponseEntity<>(iTurnService.getTurn(), HttpStatus.OK);
     }
 }

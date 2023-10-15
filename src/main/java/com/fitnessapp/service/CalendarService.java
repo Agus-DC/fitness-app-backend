@@ -1,6 +1,6 @@
 package com.fitnessapp.service;
-import com.fitnessapp.dtos.request.CalendarsDTO;
-import com.fitnessapp.model.Calendars;
+import com.fitnessapp.dtos.request.CalendarDTO;
+import com.fitnessapp.model.Calendar;
 import com.fitnessapp.repository.ICalendarRepository;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -16,15 +16,15 @@ public class CalendarService implements ICalendarService {
     ICalendarRepository iCalendarRepository;
 
     @Override
-    public void createCalendar(CalendarsDTO calendarsDTO) {
-        Calendars calendars = mapper.map(calendarsDTO, Calendars.class);
-        iCalendarRepository.save(calendars);
+    public void createCalendar(CalendarDTO calendarDTO) {
+        Calendar calendar = mapper.map(calendarDTO, Calendar.class);
+        iCalendarRepository.save(calendar);
     }
 
     @Override
-    public void updateCalendar(CalendarsDTO calendarsDTO) {
-        Calendars calendars = mapper.map(calendarsDTO, Calendars.class);
-        iCalendarRepository.save(calendars);
+    public void updateCalendar(CalendarDTO calendarDTO) {
+        Calendar calendar = mapper.map(calendarDTO, Calendar.class);
+        iCalendarRepository.save(calendar);
     }
 
     @Override
@@ -33,12 +33,12 @@ public class CalendarService implements ICalendarService {
     }
 
     @Override
-    public List<Calendars> getCalendar() {
+    public List<Calendar> getCalendar() {
         return iCalendarRepository.findAll();
     }
 
     @Override
-    public Calendars getCalendarFromProfessional(Integer professional_id){
+    public Calendar getCalendarFromProfessional(Integer professional_id){
         return iCalendarRepository.getCalendarFromProfessional(professional_id);
     }
 }

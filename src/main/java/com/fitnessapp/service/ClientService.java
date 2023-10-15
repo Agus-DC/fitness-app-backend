@@ -16,10 +16,10 @@ public class ClientService implements IClientService {
     ModelMapper mapper;
     IClientRepository iClientRepository;
 
-    @Override
-    public List<Client> getClientByDateForProfessionals(LocalDateTime date){
-        return iClientRepository.getClientByDateForProfessionals(date);
-    }
+    //@Override
+    //public List<Client> getClientByDateForProfessionals(LocalDateTime date){
+    //    return iClientRepository.getClientByDateForProfessionals(date);
+    //}
 
     @Override
     public void createClient(ClientDTO clientDTO) {

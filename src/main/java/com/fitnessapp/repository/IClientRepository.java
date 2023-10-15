@@ -12,10 +12,10 @@ import java.util.List;
 public interface IClientRepository extends JpaRepository<Client,Integer> {
 
     //Listar todos los pacientes de un día de todos los professionalas.
-    @Query("select p from Client p " +
+ /*   @Query("select p from Client p " +
             "join p.turnSet t " +
             "join t.professionalset ds " +
             "where t.startTime = :date ")
     List<Client> getClientByDateForProfessionals(@Param("date") LocalDateTime date);
-
+*/
 }

@@ -1,15 +1,15 @@
 package com.fitnessapp.service;
 
-import com.fitnessapp.dtos.request.CalendarsDTO;
-import com.fitnessapp.model.Calendars;
+import com.fitnessapp.dtos.request.CalendarDTO;
+import com.fitnessapp.model.Calendar;
 
 import java.util.List;
 
 public interface ICalendarService {
 
-     void createCalendar(CalendarsDTO calendarsDTO);
-     void updateCalendar(CalendarsDTO calendarsDTO);
+     void createCalendar(CalendarDTO calendarDTO);
+     void updateCalendar(CalendarDTO calendarDTO);
      void removeCalendar(int id);
-     List<Calendars> getCalendar() ;
-     Calendars getCalendarFromProfessional(Integer professional_id);
+     List<Calendar> getCalendar() ;
+     Calendar getCalendarFromProfessional(Integer professional_id);
 }

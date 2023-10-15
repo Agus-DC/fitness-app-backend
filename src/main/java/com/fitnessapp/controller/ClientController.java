@@ -22,11 +22,11 @@ public class ClientController {
     /**
      * Listar todos los professionalas que tengan más de dos turnos en una fecha
      */
-    @GetMapping("/findclientbydateforprofessionals")
+ /*   @GetMapping("/findclientbydateforprofessionals")
     public ResponseEntity<List<Client>> getClientByDateForProfessionals(@RequestParam String date){
         LocalDateTime dt = LocalDateTime.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         return new ResponseEntity<>(iClientService.getClientByDateForProfessionals(dt), HttpStatus.OK);
-    }
+    }*/
 
 
     @PostMapping("/create")

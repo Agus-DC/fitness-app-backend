@@ -47,8 +47,4 @@ public class Client {
 
     @OneToOne(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private Diet diet;
-
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
-    @JsonIgnore
-    private Set<Turn> turnSet;
 }

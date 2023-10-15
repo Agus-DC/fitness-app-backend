@@ -22,11 +22,11 @@ public class ProfessionalController {
     /**
      * Listar todos los professionalas que tengan más de dos turnos en una fecha
      */
-    @GetMapping("/findprofessionalwithmoreof2turns")
+/*    @GetMapping("/findprofessionalwithmoreof2turns")
     public ResponseEntity<List<Professional>> findProfessionalWithMoreOf2Turns(@RequestParam String date){
         LocalDateTime dt = LocalDateTime.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         return new ResponseEntity<>(iProfessionalService.findProfessionalWithMoreOf2Turns(dt), HttpStatus.OK);
-    }
+    }*/
 
 
     @PostMapping("/create")

@@ -6,10 +6,11 @@ import com.fitnessapp.model.Turn;
 import com.fitnessapp.repository.IProfessionalRepository;
 import com.fitnessapp.repository.IClientRepository;
 import com.fitnessapp.repository.ITurnRepository;
+import com.fitnessapp.utils.TurnSatusProvider;
+import java.sql.Timestamp;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.*;
 
 @Service
@@ -23,67 +24,68 @@ public class TurnService implements ITurnService {
     IProfessionalRepository iProfessionalRepository;
 
     @Override
-    public void createTurn(TurnDTO turnDTO) throws Exception{
+    public Integer createTurn(TurnDTO turnDTO) {
 
-        if(turnDTO.getStatus().equals("Reprogramado")) turnDTO = createReprogramedTurn(turnDTO);
+        if (!isValidTurnCreationStatus(turnDTO)) {
+            throw new RuntimeException("status del turno invalido");
+        }
+
+        if (iProfessionalRepository.findById(turnDTO.getIdProfessional()).isEmpty()) {
+            throw new RuntimeException("Profesional no encontrado");
+        }
+        Professional professional = iProfessionalRepository.getById(turnDTO.getIdProfessional());
+        Timestamp startTimeLimit = Timestamp.valueOf(turnDTO.getStartTime().minusMinutes(30));
+        Timestamp endTimeLimit = Timestamp.valueOf(turnDTO.getStartTime().plusMinutes(30));
+
+        List<Turn> overlappingTurns = iTurnRepository.findTurnsWithinMargin(startTimeLimit, endTimeLimit);
+
+        if (!overlappingTurns.isEmpty()) {
+            throw new RuntimeException("El turno se superpone con un turno existente: " + overlappingTurns.get(0).getStartTime());
+        }
 
         Client client = iClientRepository.findById(turnDTO.getIdClient()).orElseThrow(() -> new RuntimeException("Paciente no encontrado"));
         Turn turn = new Turn();
-        Set<Professional> professionals = new HashSet<>();//Collections.emptySet() -> Si pongo esto no puedo agregar optionals
 
         turn.setDescription(turnDTO.getDescription());
-        turn.setStatus(turnDTO.getStatus());
-        if(turnDTO.getIdToReprogTurn() != null) turn.setIdToReprogTurn(turnDTO.getIdToReprogTurn());
-        if(!saveTurnTime(turnDTO.getStartTime())) throw new RuntimeException("Turno no disponible");
-
-        turn.setStartTime(turnDTO.getStartTime());
-        turn.setStartTime(turnDTO.getStartTime());
+        turn.setStatus(TurnSatusProvider.PENDING);
+        turn.setStartTime(Timestamp.valueOf(turnDTO.getStartTime()));
         turn.setClient(client);
+        turn.setCalendar(professional.getCalendar());
 
+        iTurnRepository.save(turn);
+        return turn.getId();
+    }
 
-        turnDTO.getIdProfessional().forEach(a ->
-                professionals.add(iProfessionalRepository.findById(a).orElse(null)));
+    private boolean isValidTurnCreationStatus(TurnDTO turnDTO) {
+        return (TurnSatusProvider.PENDING.equals(turnDTO.getStatus().toLowerCase()) ||
+            TurnSatusProvider.REPROGRAMMED.equals(turnDTO.getStatus().toLowerCase()) ||
+            TurnSatusProvider.COMPLETED.equals(turnDTO.getStatus().toLowerCase()));
+    }
 
-        if (professionals.contains(null)) {
-            throw new RuntimeException("Profesional no encontrado");
+    private boolean isValidTurnUpdateStatus(String newStatus, String oldStatus) {
+        if (newStatus.equals(oldStatus)) {
+            return true;
         }
-
-
-        professionals.forEach(b -> b.getCalendars().createTurn(turn.getStartTime()));
-
-        turn.setProfessionalset(professionals);
-        iTurnRepository.save(turn);
-    }
-
-    private boolean saveTurnTime(LocalDateTime startDate){
-        boolean res = false;
-        long minutes = startDate.getMinute();
-        if(minutes == 30 || minutes == 0) res = true;
-        return res;
-    }
-
-
-    private TurnDTO createReprogramedTurn(TurnDTO turnDTO) throws Exception{
-        Turn turn = iTurnRepository.findById(turnDTO.getIdToReprogTurn()).orElseThrow(() -> new RuntimeException("Turno no encontrado"));
-        changeStatusOfTurn(turn, "Reprogramado");
-        if(turn.getStartTime().compareTo(turnDTO.getStartTime()) == 0) throw new RuntimeException("El horario de la reprogramacion no puede ser el mismo que el original");
-        return new TurnDTO(
-                turn.getDescription(),
-                "Pendiente",
-                turnDTO.getIdToReprogTurn(),
-                turnDTO.getStartTime(),
-                turnDTO.getIdClient(),
-                turnDTO.getIdProfessional());
-    }
-
-    private void changeStatusOfTurn(Turn turn, String status){
-        turn.setStatus(status);
-        iTurnRepository.save(turn);
+        return (TurnSatusProvider.PENDING.equals(oldStatus) || TurnSatusProvider.REPROGRAMMED.equals(oldStatus))
+            && (TurnSatusProvider.REPROGRAMMED.equals(newStatus) || TurnSatusProvider.COMPLETED.equals(newStatus));
     }
 
     @Override
-    public void updateTurn(Turn turn) {
-        iTurnRepository.save(turn);
+    public Integer updateTurn(TurnDTO turnDTO) {
+        if (turnDTO.getId() == null) {
+            throw new RuntimeException("turn to update no reference");
+        }
+        Turn existingTurn = iTurnRepository.findById(turnDTO.getId())
+            .orElseThrow(() -> new RuntimeException("Turno no encontrado"));
+        if(Timestamp.valueOf(turnDTO.getStartTime()).before(existingTurn.getStartTime())) {
+            throw new RuntimeException("El horario es invalido");
+        }
+        if (!isValidTurnUpdateStatus(turnDTO.getStatus(), existingTurn.getStatus())) {
+            throw new RuntimeException("status del turno invalido");
+        }
+        removeTurn(existingTurn.getId());
+        System.out.println("deleted turn: " + turnDTO.getId());
+        return createTurn(turnDTO);
     }
 
     @Override
@@ -93,12 +95,18 @@ public class TurnService implements ITurnService {
 
     @Override
     public List<Turn> getTurn() {
-        return iTurnRepository.findAll();
+        return iTurnRepository.getAll();
     }
 
     public List<Turn> findTurnosLikeFinalizado(){
-        return iTurnRepository.findTurnosLikeFinalizado();
+        List<Turn> turnList = iTurnRepository.findTurnosLikeFinalizado();
+        System.out.println("findTurnosLikeFinalizado" + turnList);
+        return turnList;
     }
 
-    public List<Turn> findTurnosLikeReprogramed(){return iTurnRepository.findTurnosLikeReprogramed();}
+    public List<Turn> findTurnosLikeReprogramed(){
+        List<Turn> turnList = iTurnRepository.findTurnosLikeReprogramed();
+        System.out.println("findTurnosLikeReprogramed" + turnList);
+        return turnList;
+    }
 }

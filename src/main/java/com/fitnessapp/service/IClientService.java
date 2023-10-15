@@ -10,5 +10,5 @@ public interface IClientService {
     void updateClient(ClientDTO clientDTO);
     void removeClient(int id);
     List<Client> getClient() ;
-    List<Client> getClientByDateForProfessionals(LocalDateTime dt);
+    //List<Client> getClientByDateForProfessionals(LocalDateTime dt);
 }

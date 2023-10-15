@@ -12,12 +12,12 @@ import java.util.List;
 public interface IProfessionalRepository extends JpaRepository<Professional,Integer> {
 
     //Listar todos los professionalas que tengan más de dos turnos en una fecha
-    @Query("select d from Professional d " +
+   /* @Query("select d from Professional d " +
             "join d.turnSet t " +
             "where t.startTime = :date " +
             "group by d HAVING COUNT(t) > 2")
     List<Professional> findProfessionalWithMoreOf2Turns(@Param("date")LocalDateTime date);
-
+*/
     //La query en sql la haria asi:
     /**
      SELECT professionals.name,COUNT(t.id_turn) AS trns

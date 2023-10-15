@@ -50,7 +50,7 @@ public class Workout {
   private String others;
 
   @JoinColumn(name = "workout_id", nullable = false)
-  @OneToOne(fetch = FetchType.LAZY)
+  @OneToOne(fetch = FetchType.EAGER)
   @JsonIgnore
   private Client client;
 }

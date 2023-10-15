@@ -1,6 +1,6 @@
 package com.fitnessapp.service;
 import com.fitnessapp.dtos.request.ProfessionalDTO;
-import com.fitnessapp.model.Calendars;
+import com.fitnessapp.model.Calendar;
 import com.fitnessapp.model.Professional;
 import com.fitnessapp.repository.ICalendarRepository;
 import com.fitnessapp.repository.IProfessionalRepository;
@@ -18,16 +18,16 @@ public class ProfessionalService implements IProfessionalService {
     ModelMapper mapper;
     IProfessionalRepository iProfessionalRepository;
     ICalendarRepository iCalendarRepository;
-    @Override
-    public List<Professional> findProfessionalWithMoreOf2Turns(LocalDateTime date){
-        return iProfessionalRepository.findProfessionalWithMoreOf2Turns(date);
-    }
+    //@Override
+    //public List<Professional> findProfessionalWithMoreOf2Turns(LocalDateTime date){
+    //    return iProfessionalRepository.findProfessionalWithMoreOf2Turns(date);
+    //}
 
 
     @Override
     public void createProfessional(ProfessionalDTO professionalDTO) {
         Professional professional = mapper.map(professionalDTO, Professional.class);
-        professional.setCalendars(new Calendars(professional));
+        professional.setCalendar(new Calendar(professional));
         iProfessionalRepository.save(professional);
     }
 

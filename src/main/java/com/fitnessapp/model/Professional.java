@@ -6,7 +6,7 @@ import java.util.*;
 
 @Entity
 @Getter @Setter
-@Table(name = "Professionals")
+@Table(name = "Professional")
 public class Professional {
 
     @Id
@@ -26,13 +26,9 @@ public class Professional {
     @Column(name = "password")
     private String password;
 
-    @ManyToMany(mappedBy = "professionalset", fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    @JsonIgnore
-    Set<Turn> turnSet;
-
     //orphanRemoval= true especifica que la entidad hijo debe ser eliminada automáticamente por el propio ORM si ha
     //dejado de ser referenciada por una entidad padre
     @OneToOne(mappedBy = "professional", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private Calendars calendars;
+    private Calendar calendar;
 
 }
